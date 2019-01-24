@@ -2,17 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc994b9a-21ac-436b-8853-11bb2f7c27fd" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/contracts/Upload.sol" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/educationpasaport.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/upload.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/contracts/EducationPasaport.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/contracts/IPFSHashStore.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/contracts/Migrations.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/contracts/StoreHash.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/contracts/EducationPasaport.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/EducationPasaport.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contracts/IPFSHashStore.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/IPFSHashStore.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contracts/Upload.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/Upload.sol" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/migrations/2_deploy_contracts.js" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/2_deploy_contracts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/storehash.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/ipfshashstore.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,14 +24,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="App.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="606">
-              <caret line="97" column="49" selection-start-line="97" selection-start-column="49" selection-end-line="97" selection-end-column="49" />
+            <state relative-caret-position="522">
+              <caret line="88" column="11" lean-forward="true" selection-start-line="88" selection-start-column="11" selection-end-line="88" selection-end-column="11" />
               <folding>
-                <element signature="e#0#58#0" expanded="true" />
-                <element signature="e#134#153#0" expanded="true" />
+                <element signature="e#0#83#0" expanded="true" />
+                <element signature="e#122#141#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -42,17 +40,17 @@
       <file leaf-file-name="IPFSHashStore.sol" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/contracts/IPFSHashStore.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="13" column="24" lean-forward="true" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+            <state>
+              <caret selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Upload.sol" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Upload.sol" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/contracts/Upload.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="87">
-              <caret line="3" column="22" lean-forward="true" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+            <state relative-caret-position="272">
+              <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -60,17 +58,35 @@
       <file leaf-file-name="EducationPasaport.sol" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/contracts/EducationPasaport.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="7" column="26" lean-forward="true" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+            <state relative-caret-position="102">
+              <caret line="3" column="68" lean-forward="true" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="68" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EducationPasaport.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build/contracts/EducationPasaport.json">
+      <file leaf-file-name="upload.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/upload.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1065">
-              <caret line="2991" column="18" selection-start-line="2991" selection-start-column="18" selection-end-line="2991" selection-end-column="18" />
+              <caret line="304" column="33" lean-forward="true" selection-start-line="304" selection-start-column="33" selection-end-line="304" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Upload.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build/contracts/Upload.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1102">
+              <caret line="317" column="3" selection-start-line="2" selection-start-column="9" selection-end-line="317" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2_deploy_contracts.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/migrations/2_deploy_contracts.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="145">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -78,17 +94,8 @@
       <file leaf-file-name="ipfshashstore.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ipfshashstore.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IPFSHashStore.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build/contracts/IPFSHashStore.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+            <state relative-caret-position="435">
+              <caret line="15" column="27" lean-forward="true" selection-end-line="39" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -108,8 +115,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Solidity Library" />
-        <option value="JavaScript File" />
         <option value="Solidity Contract" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -122,6 +129,12 @@
       <find>education</find>
       <find>hashst</find>
       <find>method`</find>
+      <find>ipfshashstore</find>
+      <find>Get T</find>
+      <find>get transa</find>
+      <find>nameValue</find>
+      <find>setstate</find>
+      <find>setState</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -134,14 +147,15 @@
         <option value="$PROJECT_DIR$/truffle-config.js" />
         <option value="$PROJECT_DIR$/src/App.css" />
         <option value="$PROJECT_DIR$/public/index.html" />
-        <option value="$PROJECT_DIR$/migrations/2_deploy_contracts.js" />
         <option value="$PROJECT_DIR$/contracts/IPFSHashStore.sol" />
         <option value="$PROJECT_DIR$/src/storehash.js" />
-        <option value="$PROJECT_DIR$/contracts/EducationPasaport.sol" />
         <option value="$PROJECT_DIR$/src/educationpasaport.js" />
         <option value="$PROJECT_DIR$/src/ipfshashstore.js" />
-        <option value="$PROJECT_DIR$/src/App.js" />
+        <option value="$PROJECT_DIR$/migrations/2_deploy_contracts.js" />
+        <option value="$PROJECT_DIR$/contracts/EducationPasaport.sol" />
         <option value="$PROJECT_DIR$/contracts/Upload.sol" />
+        <option value="$PROJECT_DIR$/src/upload.js" />
+        <option value="$PROJECT_DIR$/src/App.js" />
       </list>
     </option>
   </component>
@@ -200,6 +214,11 @@
             <path>
               <item name="final" type="b2602c69:ProjectViewProjectNode" />
               <item name="final" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="final" type="b2602c69:ProjectViewProjectNode" />
+              <item name="final" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -239,12 +258,12 @@
       <updated>1548328720432</updated>
       <workItem from="1548328721530" duration="764000" />
       <workItem from="1548336018473" duration="454000" />
-      <workItem from="1548339845788" duration="6995000" />
+      <workItem from="1548339845788" duration="13812000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8213000" />
+    <option name="totallyTimeSpent" value="15030000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -326,8 +345,8 @@
         <state relative-caret-position="1131">
           <caret line="43" column="75" selection-start-line="43" selection-start-column="75" selection-end-line="43" selection-end-column="75" />
           <folding>
-            <element signature="e#0#58#0" expanded="true" />
-            <element signature="e#134#153#0" expanded="true" />
+            <element signature="e#0#83#0" expanded="true" />
+            <element signature="e#122#141#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -394,13 +413,6 @@
     <entry file="file://$PROJECT_DIR$/migrations/1_initial_migration.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/migrations/2_deploy_contracts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="54" selection-start-column="41" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/educationpasaport.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="116">
@@ -415,49 +427,70 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ipfshashstore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build/contracts/EducationPasaport.json">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31747">
+          <caret line="4049" column="18" selection-start-line="4049" selection-start-column="18" selection-end-line="4049" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ipfshashstore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="15" column="27" lean-forward="true" selection-end-line="39" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/migrations/2_deploy_contracts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/upload.js">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1065">
-          <caret line="2991" column="18" selection-start-line="2991" selection-start-column="18" selection-end-line="2991" selection-end-column="18" />
+          <caret line="304" column="33" lean-forward="true" selection-start-line="304" selection-start-column="33" selection-end-line="304" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
+    <entry file="file://$PROJECT_DIR$/build/contracts/Upload.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="606">
-          <caret line="97" column="49" selection-start-line="97" selection-start-column="49" selection-end-line="97" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
-            <element signature="e#134#153#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contracts/EducationPasaport.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="7" column="26" lean-forward="true" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contracts/IPFSHashStore.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="13" column="24" lean-forward="true" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+        <state relative-caret-position="1102">
+          <caret line="317" column="3" selection-start-line="2" selection-start-column="9" selection-end-line="317" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/contracts/Upload.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="3" column="22" lean-forward="true" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+        <state relative-caret-position="272">
+          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/IPFSHashStore.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/EducationPasaport.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="3" column="68" lean-forward="true" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="88" column="11" lean-forward="true" selection-start-line="88" selection-start-column="11" selection-end-line="88" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#83#0" expanded="true" />
+            <element signature="e#122#141#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

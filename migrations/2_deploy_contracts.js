@@ -1,7 +1,5 @@
-var IPFSHashStore = artifacts.require("./IPFSHashStore.sol");
-var EducationPasaport = artifacts.require("./EducationPasaport.sol");
+var Upload = artifacts.require("./Upload.sol");
 
 module.exports = function(deployer) {
-    deployer.deploy(IPFSHashStore);
-    deployer.deploy(EducationPasaport);
+    deployer.deploy(Upload);
 };

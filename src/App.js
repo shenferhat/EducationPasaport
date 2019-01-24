@@ -1,11 +1,13 @@
-import {Button, Form } from 'react-bootstrap';
+import {Button, Form,DropdownButton,MenuItem,Row,Col,Grid } from 'react-bootstrap';
 import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import web3 from './web3';
 import ipfs from './ipfs';
-import ipfshashstore from './ipfshashstore';
-import educationpasaport from './educationpasaport';
+import upload from './upload';
+
+const optionsloe = ["PhD,Master","Bachelor","HighSchool","SecondarySchool","PrimarySchool"];
+const optionsDocType = ["Diplomas","Certificates","Transcripts","ReportCards"];
 
 class App extends Component {
  
@@ -17,8 +19,12 @@ class App extends Component {
         transactionHash:'',
         gasUsed:'',
         txReceipt: '',
-        nameValue:'',
-        surnameValue:''
+        name:'1',
+        surname:'2',
+        email:'3',
+        studentId:'4',
+        levelOfEducation:optionsloe[0],
+        documentTypeChoice:optionsDocType[0]
     };
    
     captureFile =(event) => {
@@ -58,10 +64,39 @@ class App extends Component {
       } //catch
   } //onClickUploadFile
 
-    handleChange = async (event) => {
+    handleChangeName = async (event) => {
         this.setState({
-            nameValue: event.target.value
+            name: event.target.value
         });
+        console.log(this.state.name);
+    }
+
+    handleChangeSurname = async (event) => {
+        this.setState({
+            surname: event.target.value
+        });
+        console.log(this.state.surname);
+    }
+    handleChangeEmail = async (event) => {
+        this.setState({
+            email: event.target.value
+        });
+        console.log(this.state.email);
+    }
+    handleChangeStudentID = async (event) => {
+        this.setState({
+            studentId: event.target.value
+        });
+        console.log(this.state.studentId);
+    }
+
+    handleSelectLoe(eventKey, event) {
+        this.setState({ levelOfEducation: eventKey });
+    }
+
+    handleSelectDocumentType(eventKey, event) {
+        this.setState({ documentTypeChoice: eventKey });
+        console.log(eventKey);
     }
 
 
@@ -74,7 +109,7 @@ class App extends Component {
       console.log('Current Metamask account: ' + accounts[0]);
 
       //obtain contract address from ipfshashstore.js
-      const ethAddress= await ipfshashstore.options.address;
+      const ethAddress= await upload.options.address;
       this.setState({ethAddress});
 
       //save document to IPFS,return its hash#, and set hash# to state
@@ -84,19 +119,51 @@ class App extends Component {
         //setState by setting ipfsHash to ipfsHash[0].hash 
         this.setState({ ipfsHash:ipfsHash[0].hash });
 
-            ipfshashstore.methods.sendHash(this.state.ipfsHash).send({
-              from: accounts[0]
-            }, (error, transactionHash) => {
-              console.log(transactionHash);
-              this.setState({transactionHash});
-            });
+            if(this.state.name !== undefined ||
+                this.state.surname !== undefined ||
+                this.state.email !== undefined ||
+                this.state.studentId !== undefined ||
+                this.state.levelOfEducation !== undefined ||
+                this.state.documentTypeChoice !== undefined ) {
 
-            educationpasaport.methods.setName(this.state.ipfsHash).send({
-                from: accounts[0]
-            }, (error, transactionHash) => {
-                console.log(transactionHash);
-                this.setState({transactionHash});
-            });
+                upload.methods.uploadEducationPasaport(
+                    "",
+                    "",
+                    "",
+                    23,
+                    0,
+                    0,
+                    this.state.ipfsHash)
+                    .send({
+                        from: accounts[0]
+                    }, (error, transactionHash) => {
+                        console.log(transactionHash);
+                        this.setState({transactionHash});
+                    });
+
+            }
+
+      /*
+                upload.methods.uploadEducationPasaport(
+                this.state.name,
+                this.state.surname,
+                this.state.email,
+                this.state.studentId,
+                this.state.levelOfEducation,
+                this.state.documentTypeChoice,
+                    this.state.ipfsHash)
+                    .send({
+                    from: accounts[0]
+                }, (error, transactionHash) => {
+                    console.log(transactionHash);
+                    this.setState({transactionHash});
+                });
+
+            } else {
+                this.setState({alert:"Empty Field"});
+            }
+*/
+
 
 
       }) //await ipfs.add 
@@ -112,7 +179,7 @@ class App extends Component {
 
           <hr />
 
-            <h3> Choose Education Document</h3>
+            <h3> Upload Education Document</h3>
             <Form onSubmit={this.onSubmit}>
                 <p/>
                 <label>Photo Upload: </label>
@@ -123,27 +190,106 @@ class App extends Component {
                 <br/>
                 <p/>
                 <label>Name: </label>
-                <input type="text" value={this.state.nameValue} name="firstname" placeholder="Enter text" onChange={this.handleChange}/>
+                <input type="text" value={this.state.name} name="name" placeholder="Enter text" onChange={this.handleChangeName}/>
                 <br/>
                 <p/>
                 <label>Surname: </label>
-                <input type="text" value={this.state.surnameValue} name="surname" placeholder="Enter text" onChange={this.handleChange}/>
+                <input type="text" value={this.state.surname} name="surname" placeholder="Enter text" onChange={this.handleChangeSurname}/>
+                <br/>
+                <p/>
+                <label>E-Mail: </label>
+                <input type="text" value={this.state.email} name="email" placeholder="Enter text" onChange={this.handleChangeEmail}/>
+                <br/>
+                <p/>
+                <label>Student ID: </label>
+                <input type="text" value={this.state.studentId} name="studentId" placeholder="Enter text" onChange={this.handleChangeStudentID}/>
+                <br/>
+                <p/>
+                <label>Level Of Education: </label>
+                <DropdownButton
+                    title={this.state.levelOfEducation}
+                    id="level-of-education"
+                    onSelect={this.handleSelectLoe.bind(this)}
+                >
+                    {optionsloe.map((opt, i) => (
+                        <MenuItem key={i} eventKey={i}>
+                            {opt}
+                        </MenuItem>
+                    ))}
+                </DropdownButton>
+                <br/>
+                <p/>
+                <label>Document Type: </label>
+
+                <DropdownButton
+                    title={this.state.documentTypeChoice}
+                    id="document-type"
+                    onSelect={this.handleSelectDocumentType.bind(this)}
+                >
+                    {optionsDocType.map((opt2, j) => (
+                        <MenuItem key={j} eventKey={j}>
+                            {opt2}
+                        </MenuItem>
+                    ))}
+                </DropdownButton>
+                <br/>
                 <br/>
 
                 <Button
-                    bsStyle="primary"
+                    bsStyle="default"
                     type="submit">
                     Send it
                 </Button>
             </Form>
 
             <hr/>
+
+            <h3> Query Your Documents </h3>
             <Button onClick = {this.onClickUploadFile}> Get Transaction Receipt </Button>
-            {this.state.ipfsHash}
-            {this.state.ethAddress}
-            {this.state.transactionHash}
-            {this.state.blockNumber}
-            {this.state.gasUsed}
+            <Grid>
+                <Row className="show-grid">
+                    <Col xs={6} md={4}>
+                       IPFS File Hash:
+                    </Col>
+                    <Col xs={6} md={4}>
+                        {this.state.ipfsHash}
+                    </Col>
+                </Row>
+                <Row className="show-grid">
+                    <Col xs={6} md={4}>
+                        Transaction Hash:
+                    </Col>
+                    <Col xs={6} md={4}>
+                        {this.state.transactionHash}
+                    </Col>
+                </Row>
+                <Row className="show-grid">
+                    <Col xs={6} md={4}>
+                        Ethereum Address:
+                    </Col>
+                    <Col xs={6} md={4}>
+                        {this.state.ethAddress}
+                    </Col>
+                </Row>
+                <Row className="show-grid">
+                    <Col xs={6} md={4}>
+                        Block Number:
+                    </Col>
+                    <Col xs={6} md={4}>
+                        {this.state.blockNumber}
+                    </Col>
+                </Row>
+                <Row className="show-grid">
+                    <Col xs={6} md={4}>
+                        Gas Used:
+                    </Col>
+                    <Col xs={6} md={4}>
+                        {this.state.gasUsed}
+                    </Col>
+                </Row>
+
+            </Grid>
+
      </div>
       );
     } //render

@@ -27,4 +27,13 @@ contract EducationPasaport {
     uint32 studentID;
     function getStudentID() public view returns (uint32 y) { return studentID; }
     function setStudentID(uint32 x) public { studentID = x; }
+
+    function uploadEP(string memory _name,string memory _surname,string memory _email,uint32 _studentID,documentType  dtc,levelOfEducation  loec) public {
+        setName(_name);
+        setSurName(_surname);
+        setEmail(_email);
+        setStudentID(_studentID);
+        setDocumentType(dtc);
+        setLevelOfEducation(loec);
+    }
 }
