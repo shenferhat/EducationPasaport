@@ -1,10 +1,11 @@
-import {Button, Form,FormControl } from 'react-bootstrap';
+import {Button, Form } from 'react-bootstrap';
 import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import web3 from './web3';
 import ipfs from './ipfs';
-import storehash from './storehash';
+import ipfshashstore from './ipfshashstore';
+import educationpasaport from './educationpasaport';
 
 class App extends Component {
  
@@ -72,8 +73,8 @@ class App extends Component {
      
       console.log('Current Metamask account: ' + accounts[0]);
 
-      //obtain contract address from storehash.js
-      const ethAddress= await storehash.options.address;
+      //obtain contract address from ipfshashstore.js
+      const ethAddress= await ipfshashstore.options.address;
       this.setState({ethAddress});
 
       //save document to IPFS,return its hash#, and set hash# to state
@@ -83,13 +84,19 @@ class App extends Component {
         //setState by setting ipfsHash to ipfsHash[0].hash 
         this.setState({ ipfsHash:ipfsHash[0].hash });
 
-            storehash.methods.sendHash(this.state.ipfsHash).send({
+            ipfshashstore.methods.sendHash(this.state.ipfsHash).send({
               from: accounts[0]
             }, (error, transactionHash) => {
               console.log(transactionHash);
               this.setState({transactionHash});
-            }); //storehash
+            });
 
+            educationpasaport.methods.setName(this.state.ipfsHash).send({
+                from: accounts[0]
+            }, (error, transactionHash) => {
+                console.log(transactionHash);
+                this.setState({transactionHash});
+            });
 
 
       }) //await ipfs.add 
