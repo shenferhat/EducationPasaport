@@ -62,6 +62,7 @@ https://rinkeby.etherscan.io/address/0xd064d4e91c959f2898ac9b8d2bca2c61b770b392#
 - Sometimes when registering second document metamask 
 can throw exception. 
 - Sometimes Metamask shows document register price as 0 ETH and this causes an error.
+- New version browsers may cause problem.
 
 Both of this bugs can be dealt with by refreshing or using Incognito Mode with Metamask enabled.
 Chrome's caching is a problem so using CTRL + F5 fixes a lot of things.
@@ -76,3 +77,6 @@ License
 GNU / GPL
 **Free Software, Hell Yeah!**
 
+### Screen Shot
+
+![alt text](https://raw.githubusercontent.com/shenferhat/EducationPasaport/master/ss.png)
