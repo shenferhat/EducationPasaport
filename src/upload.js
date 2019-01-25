@@ -2,253 +2,128 @@ import web3 from './web3';
 
 //access our local copy to contract deployed on rinkeby testnet
 //use your own contract address
-const address = '0xB0D5FB61652DCd4e42769F2359877226a934F66E';
+const address = '0xBeCDfEA6e7a1847b1E7de964467aC6163b815AB3';
 //use the ABI from your contract
 const abi = [
     {
         "constant": true,
         "inputs": [],
-        "name": "getDocumentType",
+        "name": "backendContract",
         "outputs": [
             {
                 "name": "",
-                "type": "uint8"
+                "type": "address"
             }
         ],
         "payable": false,
         "stateMutability": "view",
         "type": "function",
-        "signature": "0x13368fd9"
-    },
-    {
-        "constant": false,
-        "inputs": [
-            {
-                "name": "x",
-                "type": "uint8"
-            }
-        ],
-        "name": "setLevelOfEducation",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function",
-        "signature": "0x16b073d6"
+        "signature": "0x6f752f09"
     },
     {
         "constant": true,
         "inputs": [],
-        "name": "getName",
-        "outputs": [
-            {
-                "name": "y",
-                "type": "string"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function",
-        "signature": "0x17d7de7c"
-    },
-    {
-        "constant": true,
-        "inputs": [],
-        "name": "getLevelOfEducation",
+        "name": "owner",
         "outputs": [
             {
                 "name": "",
-                "type": "uint8"
+                "type": "address"
             }
         ],
         "payable": false,
         "stateMutability": "view",
         "type": "function",
-        "signature": "0x20b1260b"
+        "signature": "0x8da5cb5b"
     },
     {
-        "constant": false,
+        "constant": true,
         "inputs": [
             {
-                "name": "x",
-                "type": "string"
+                "name": "",
+                "type": "uint256"
             }
         ],
-        "name": "setEmail",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function",
-        "signature": "0x282b065a"
-    },
-    {
-        "constant": false,
-        "inputs": [
+        "name": "previousBackends",
+        "outputs": [
             {
-                "name": "x",
-                "type": "uint32"
+                "name": "",
+                "type": "address"
             }
         ],
-        "name": "setStudentID",
-        "outputs": [],
         "payable": false,
-        "stateMutability": "nonpayable",
+        "stateMutability": "view",
         "type": "function",
-        "signature": "0x3da8b0fb"
+        "signature": "0xb117dd17"
     },
     {
         "constant": true,
         "inputs": [],
-        "name": "getEmail",
+        "name": "newOwner",
         "outputs": [
             {
-                "name": "y",
-                "type": "string"
+                "name": "",
+                "type": "address"
             }
         ],
         "payable": false,
         "stateMutability": "view",
         "type": "function",
-        "signature": "0x7e79e8ba"
+        "signature": "0xd4ee1d90"
     },
     {
-        "constant": false,
-        "inputs": [
-            {
-                "name": "_name",
-                "type": "string"
-            },
-            {
-                "name": "_surname",
-                "type": "string"
-            },
-            {
-                "name": "_email",
-                "type": "string"
-            },
-            {
-                "name": "_studentID",
-                "type": "uint32"
-            },
-            {
-                "name": "dtc",
-                "type": "uint8"
-            },
-            {
-                "name": "loec",
-                "type": "uint8"
-            }
-        ],
-        "name": "uploadEP",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function",
-        "signature": "0x86a89994"
-    },
-    {
-        "constant": true,
         "inputs": [],
-        "name": "getSurname",
-        "outputs": [
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "constructor",
+        "signature": "constructor"
+    },
+    {
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "fallback"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
             {
-                "name": "y",
-                "type": "string"
+                "indexed": true,
+                "name": "_from",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "name": "_to",
+                "type": "address"
             }
         ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function",
-        "signature": "0xacc823f8"
+        "name": "OwnershipTransferred",
+        "type": "event",
+        "signature": "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0"
     },
     {
         "constant": false,
         "inputs": [
             {
-                "name": "x",
-                "type": "uint8"
+                "name": "_newOwner",
+                "type": "address"
             }
         ],
-        "name": "setDocumentType",
+        "name": "transferOwnership",
         "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
         "type": "function",
-        "signature": "0xb92cc181"
+        "signature": "0xf2fde38b"
     },
     {
         "constant": false,
-        "inputs": [
-            {
-                "name": "x",
-                "type": "string"
-            }
-        ],
-        "name": "setName",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function",
-        "signature": "0xc47f0027"
-    },
-    {
-        "constant": true,
         "inputs": [],
-        "name": "getHash",
-        "outputs": [
-            {
-                "name": "x",
-                "type": "string"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function",
-        "signature": "0xd13319c4"
-    },
-    {
-        "constant": false,
-        "inputs": [
-            {
-                "name": "x",
-                "type": "string"
-            }
-        ],
-        "name": "sendHash",
+        "name": "acceptOwnership",
         "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
         "type": "function",
-        "signature": "0xdfb29935"
-    },
-    {
-        "constant": true,
-        "inputs": [],
-        "name": "getStudentID",
-        "outputs": [
-            {
-                "name": "y",
-                "type": "uint32"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function",
-        "signature": "0xeecd3df4"
-    },
-    {
-        "constant": false,
-        "inputs": [
-            {
-                "name": "x",
-                "type": "string"
-            }
-        ],
-        "name": "setSurName",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function",
-        "signature": "0xf99181b1"
+        "signature": "0x79ba5097"
     },
     {
         "constant": false,
@@ -291,23 +166,53 @@ const abi = [
     },
     {
         "constant": false,
+        "inputs": [],
+        "name": "toggle_active",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "signature": "0x3afd1b67"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "newBackend",
+                "type": "address"
+            }
+        ],
+        "name": "changeBackend",
+        "outputs": [
+            {
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "signature": "0xeaecfca7"
+    },
+    {
+        "constant": false,
         "inputs": [
             {
                 "name": "x",
                 "type": "string"
             }
         ],
-        "name": "test",
+        "name": "sendHash",
         "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
         "type": "function",
-        "signature": "0xf9fbd554"
+        "signature": "0xdfb29935"
     },
     {
-        "constant": false,
+        "constant": true,
         "inputs": [],
-        "name": "getTest",
+        "name": "getHash",
         "outputs": [
             {
                 "name": "x",
@@ -315,9 +220,224 @@ const abi = [
             }
         ],
         "payable": false,
+        "stateMutability": "view",
+        "type": "function",
+        "signature": "0xd13319c4"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "x",
+                "type": "uint8"
+            }
+        ],
+        "name": "setDocumentType",
+        "outputs": [],
+        "payable": false,
         "stateMutability": "nonpayable",
         "type": "function",
-        "signature": "0xa8cd0a80"
+        "signature": "0xb92cc181"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "getDocumentType",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint8"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function",
+        "signature": "0x13368fd9"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "x",
+                "type": "uint8"
+            }
+        ],
+        "name": "setLevelOfEducation",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "signature": "0x16b073d6"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "getLevelOfEducation",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint8"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function",
+        "signature": "0x20b1260b"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "getName",
+        "outputs": [
+            {
+                "name": "y",
+                "type": "string"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function",
+        "signature": "0x17d7de7c"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "x",
+                "type": "string"
+            }
+        ],
+        "name": "setName",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "signature": "0xc47f0027"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "getSurname",
+        "outputs": [
+            {
+                "name": "y",
+                "type": "string"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function",
+        "signature": "0xacc823f8"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "x",
+                "type": "string"
+            }
+        ],
+        "name": "setSurName",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "signature": "0xf99181b1"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "getEmail",
+        "outputs": [
+            {
+                "name": "y",
+                "type": "string"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function",
+        "signature": "0x7e79e8ba"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "x",
+                "type": "string"
+            }
+        ],
+        "name": "setEmail",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "signature": "0x282b065a"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "getStudentID",
+        "outputs": [
+            {
+                "name": "y",
+                "type": "uint32"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function",
+        "signature": "0xeecd3df4"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "x",
+                "type": "uint32"
+            }
+        ],
+        "name": "setStudentID",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "signature": "0x3da8b0fb"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "_name",
+                "type": "string"
+            },
+            {
+                "name": "_surname",
+                "type": "string"
+            },
+            {
+                "name": "_email",
+                "type": "string"
+            },
+            {
+                "name": "_studentID",
+                "type": "uint32"
+            },
+            {
+                "name": "dtc",
+                "type": "uint8"
+            },
+            {
+                "name": "loec",
+                "type": "uint8"
+            }
+        ],
+        "name": "uploadEP",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "signature": "0x86a89994"
     }
 ]
 

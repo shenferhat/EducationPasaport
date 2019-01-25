@@ -1,16 +1,17 @@
 import {Button, Form,DropdownButton,MenuItem,Row,Col,Grid } from 'react-bootstrap';
 import React, { Component } from 'react';
-//import logo from './logo.svg';
+
 import './App.css';
 import web3 from './web3';
 import ipfs from './ipfs';
+
 import upload from './upload';
 
 const optionsloe = ["PhD,Master","Bachelor","HighSchool","SecondarySchool","PrimarySchool"];
 const optionsDocType = ["Diplomas","Certificates","Transcripts","ReportCards"];
 
 class App extends Component {
- 
+
     state = {
         ipfsHash:null,
         buffer:'',
@@ -19,12 +20,18 @@ class App extends Component {
         transactionHash:'',
         gasUsed:'',
         txReceipt: '',
-        name:'1',
-        surname:'2',
-        email:'3',
-        studentId:'4',
-        levelOfEducation:optionsloe[0],
-        documentTypeChoice:optionsDocType[0]
+        name:'john',
+        surname:'wick',
+        email:'dontkillmydog@babayaga.com',
+        studentId:'43422342',
+        levelOfEducation:0,
+        documentTypeChoice:0,
+        nameFromBlockchain:'',
+        surnameFromBlockchain:'',
+        emailFromBlockchain:'',
+        studentIdFromBlockchain:0,
+        levelOfEducationFromBlockchain:0,
+        documentTypeChoiceFromBlockchain:0
     };
    
     captureFile =(event) => {
@@ -49,15 +56,24 @@ class App extends Component {
         this.setState({blockNumber:"waiting.."});
         this.setState({gasUsed:"waiting..."});
 
-        // get Transaction Receipt in console on click
-        // See: https://web3js.readthedocs.io/en/1.0/web3-eth.html#gettransactionreceipt
         await web3.eth.getTransactionReceipt(this.state.transactionHash, (err, txReceipt)=>{
           console.log(err,txReceipt);
           this.setState({txReceipt});
         }); //await for getTransactionReceipt
 
         await this.setState({blockNumber: this.state.txReceipt.blockNumber});
-        await this.setState({gasUsed: this.state.txReceipt.gasUsed});    
+        await this.setState({gasUsed: this.state.txReceipt.gasUsed});
+
+        this.setState({
+            nameFromBlockchain : await upload.methods.getName().call(),
+            surnameFromBlockchain : await upload.methods.getSurname().call(),
+            emailFromBlockchain : await upload.methods.getEmail().call(),
+            studentIdFromBlockchain:await upload.methods.getStudentID().call(),
+            levelOfEducationFromBlockchain:await upload.methods.getLevelOfEducation().call(),
+            documentTypeChoiceFromBlockchain:await upload.methods.getDocumentType().call()
+        });
+        console.log("name from bc:" + this.state.emailFromBlockchain);
+
       } //try
     catch(error){
         console.log(error);
@@ -92,15 +108,21 @@ class App extends Component {
 
     handleSelectLoe(eventKey, event) {
         this.setState({ levelOfEducation: eventKey });
+        console.log(this.state.levelOfEducation);
     }
 
     handleSelectDocumentType(eventKey, event) {
         this.setState({ documentTypeChoice: eventKey });
-        console.log(eventKey);
+        console.log(this.state.documentTypeChoice);
     }
 
 
     onSubmit = async (event) => {
+        if(this.state.buffer === undefined || this.state.buffer === '') {
+            alert("Please select a file to upload");
+            return;
+        }
+
       event.preventDefault();
 
       //bring in user's metamask account address
@@ -108,15 +130,11 @@ class App extends Component {
      
       console.log('Current Metamask account: ' + accounts[0]);
 
-      //obtain contract address from ipfshashstore.js
       const ethAddress= await upload.options.address;
       this.setState({ethAddress});
 
-      //save document to IPFS,return its hash#, and set hash# to state
-      //https://github.com/ipfs/interface-ipfs-core/blob/master/SPEC/FILES.md#add 
       await ipfs.add(this.state.buffer, (err, ipfsHash) => {
         console.log(err,ipfsHash);
-        //setState by setting ipfsHash to ipfsHash[0].hash 
         this.setState({ ipfsHash:ipfsHash[0].hash });
 
             if(this.state.name !== undefined ||
@@ -127,12 +145,12 @@ class App extends Component {
                 this.state.documentTypeChoice !== undefined ) {
 
                 upload.methods.uploadEducationPasaport(
-                    "",
-                    "",
-                    "",
-                    23,
-                    0,
-                    0,
+                    this.state.name,
+                    this.state.surname,
+                    this.state.email,
+                    this.state.studentId,
+                    this.state.levelOfEducation,
+                    this.state.documentTypeChoice,
                     this.state.ipfsHash)
                     .send({
                         from: accounts[0]
@@ -143,30 +161,8 @@ class App extends Component {
 
             }
 
-      /*
-                upload.methods.uploadEducationPasaport(
-                this.state.name,
-                this.state.surname,
-                this.state.email,
-                this.state.studentId,
-                this.state.levelOfEducation,
-                this.state.documentTypeChoice,
-                    this.state.ipfsHash)
-                    .send({
-                    from: accounts[0]
-                }, (error, transactionHash) => {
-                    console.log(transactionHash);
-                    this.setState({transactionHash});
-                });
 
-            } else {
-                this.setState({alert:"Empty Field"});
-            }
-*/
-
-
-
-      }) //await ipfs.add 
+      })
     }; //onSubmit 
   
     render() {
@@ -207,7 +203,7 @@ class App extends Component {
                 <p/>
                 <label>Level Of Education: </label>
                 <DropdownButton
-                    title={this.state.levelOfEducation}
+                    title={optionsloe[this.state.levelOfEducation]}
                     id="level-of-education"
                     onSelect={this.handleSelectLoe.bind(this)}
                 >
@@ -222,7 +218,7 @@ class App extends Component {
                 <label>Document Type: </label>
 
                 <DropdownButton
-                    title={this.state.documentTypeChoice}
+                    title={optionsDocType[this.state.documentTypeChoice]}
                     id="document-type"
                     onSelect={this.handleSelectDocumentType.bind(this)}
                 >
@@ -288,11 +284,62 @@ class App extends Component {
                     </Col>
                 </Row>
 
+
+                <Row className="show-grid">
+                    <Col xs={6} md={4}>
+                        Name:
+                    </Col>
+                    <Col xs={6} md={4}>
+                        {this.state.nameFromBlockchain}
+                    </Col>
+                </Row>
+                <Row className="show-grid">
+                    <Col xs={6} md={4}>
+                        Surname:
+                    </Col>
+                    <Col xs={6} md={4}>
+                        {this.state.surnameFromBlockchain}
+                    </Col>
+                </Row>
+                <Row className="show-grid">
+                    <Col xs={6} md={4}>
+                        Email:
+                    </Col>
+                    <Col xs={6} md={4}>
+                        {this.state.emailFromBlockchain}
+                    </Col>
+                </Row>
+                <Row className="show-grid">
+                    <Col xs={6} md={4}>
+                        Student ID:
+                    </Col>
+                    <Col xs={6} md={4}>
+                        {this.state.studentIdFromBlockchain}
+                    </Col>
+                </Row>
+                <Row className="show-grid">
+                    <Col xs={6} md={4}>
+                        Level Of Education:
+                    </Col>
+                    <Col xs={6} md={4}>
+                        {this.state.levelOfEducationFromBlockchain}
+                    </Col>
+                </Row>
+
+                <Row className="show-grid">
+                    <Col xs={6} md={4}>
+                        Document Type:
+                    </Col>
+                    <Col xs={6} md={4}>
+                        {this.state.documentTypeChoiceFromBlockchain}
+                    </Col>
+                </Row>
+
             </Grid>
 
      </div>
       );
-    } //render
+    }
 }
 
 export default App;

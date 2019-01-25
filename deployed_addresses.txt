@@ -1,0 +1,5 @@
+contract address:0xd064d4e91c959f2898ac9b8d2bca2c61b770b392
+uploader address:0x19D446f475c8dCEb3c4f97F59a88E818032dCeE2
+
+contract verified code link:
+https://rinkeby.etherscan.io/address/0xd064d4e91c959f2898ac9b8d2bca2c61b770b392#code
